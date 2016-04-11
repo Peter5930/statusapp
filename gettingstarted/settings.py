@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django_extensions',
     'django_comments',
+    'disqus',
     'statusapp'
 )
 
@@ -139,3 +140,7 @@ STATICFILES_DIRS = (
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
+SITE_ID = 1
+
+DISQUS_API_KEY = '3ui7YX1NnkIuXNViDlSFvgLvU2dqctWrwzUzvFsnfX4IAyYpURlga7BakuggLs6y'
+DISQUS_WEBSITE_SHORTNAME = 'salty-beach'

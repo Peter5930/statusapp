@@ -1,16 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-from .models import Event#, CustomComment, CommentWithTitle
-
-#from statusapp.models import CommentWithTitle
-#from statusapp.forms import CommentFormWithTitle
-
-# def get_model():
-#     return CommentWithTitle
-
-# def get_form():
-#     return CommentFormWithTitle
+from .models import Event
 
 # Create your views here.
 def index(request):
@@ -24,8 +15,6 @@ def db(request):
 def events(request):
     context = dict()
     context['events'] = Event.objects.all()
-    #context['comments'] = CustomComment.objects.all()
-    #context['commentsWithTitles'] = CommentWithTitle.objects.all()
     return render(request, 'events.html', context)
 
 

@@ -1,13 +1,9 @@
 from django.db import models
 from datetime import datetime
-#from django_comments.models import CommentAbstractModel
-# from django_comments.models import BaseCommentAbstractModel
 # from django.contrib.contenttypes.models import ContentType
-# from django_comments.models import Comment
 
 # Create your models here.
 class Event(models.Model):
-    #content_type = models.ForeignKey(ContentType)
     description = models.CharField(max_length=256, default="")
     dateStart = models.DateTimeField('event start date', auto_now_add=False)
     dateEnd = models.DateTimeField('event end date', auto_now_add=False)
@@ -38,15 +34,3 @@ class Event(models.Model):
 
     def list_attributes(self):
         return str(dir(self))
-
-#class CustomComment(CommentAbstractModel):
-#    event = models.ForeignKey(Event)
-
-# class CustomComment(BaseCommentAbstractModel):
-#     event = models.ForeignKey(Event)
-
-# class TestClass(models.Model):
-#     event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name="testclasses", related_query_name="testclasses")
-
-# class CommentWithTitle(Comment):
-#     title = models.CharField(max_length=300)

@@ -17,6 +17,10 @@ def events(request):
     context['events'] = Event.objects.all()
     return render(request, 'events.html', context)
 
+def eventView(request, event_id):
+    context = dict()
+    context['event'] = Event.objects.get(id=event_id)
+    return render(request, 'eventView.html', context)
 
 def current_datetime(request):
     now = datetime.datetime.now()

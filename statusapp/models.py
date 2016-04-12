@@ -14,6 +14,10 @@ class Event(models.Model):
         (RESOLVED, 'resolved'),
         (OUTSTANDING, 'outstanding')
         )
+    RESOLVED_COLORS = (
+        (RESOLVED, '24A243'),
+        (OUTSTANDING, 'ffa500'),
+        )
     resolvedFlag = models.IntegerField(choices=RESOLVED_CHOICES, default = OUTSTANDING)
     NORMAL_STATUS = 1
     CRITICAL_STATUS = 2
@@ -21,16 +25,64 @@ class Event(models.Model):
         (NORMAL_STATUS, 'normal'),
         (CRITICAL_STATUS, 'critical'),
         )
+    STATUS_COLORS = (
+        (NORMAL_STATUS, '24A243'),
+        (CRITICAL_STATUS, 'ffa500'),
+        )
     status = models.IntegerField(choices=STATUS_CHOICES, default=NORMAL_STATUS)
+    UNSCHEDULED = 1
+    SCHEDULED = 2
+    SCHEDULE_FLAG_CHOICES = (
+        (SCHEDULED, 'scheduled'),
+        (UNSCHEDULED, 'unscheduled'),
+        )
+    SCHEDULE_FLAG_COLORS = (
+        (SCHEDULED, '24A243'),
+        (UNSCHEDULED, 'ffa500'),
+        )
+    scheduleFlag = models.TextField(choices=SCHEDULE_FLAG_CHOICES, default=UNSCHEDULED)
 
     def __str__(self):
         return self.description
 
-    def comment_count(self):
-        ct = ContentType.objects.get_for_model(Event)
-        obj_pk = self.id
-        print "self.id == ", self.id
-        return Comment.objects.filter(content_type=ct,object_pk=obj_pk).count()
-
     def list_attributes(self):
         return str(dir(self))
+
+    def scheduleFlagHTML(self):
+        htmlString = "<div style='background-color:#"
+        count = 0
+        while count < len(self.SCHEDULE_FLAG_CHOICES):
+            if int(self.scheduleFlag) == int(self.SCHEDULE_FLAG_CHOICES[count][0]):
+                htmlString += str(self.SCHEDULE_FLAG_COLORS[count][1])
+                htmlString += "'>Event "
+                htmlString += str(self.SCHEDULE_FLAG_CHOICES[count][1])
+                htmlString += r"</div>"
+                return htmlString
+            count += 1
+        return 'schedule flag error'
+
+    def statusHTML(self):
+        htmlString = "<div style='background-color:#"
+        count = 0
+        while count < len(self.STATUS_CHOICES):
+            if int(self.status) == int(self.STATUS_CHOICES[count][0]):
+                htmlString += str(self.STATUS_COLORS[count][1])
+                htmlString += "'>Status "
+                htmlString += str(self.STATUS_CHOICES[count][1])
+                htmlString += r"</div>"
+                return htmlString
+            count += 1
+        return 'status error'
+
+    def resolvedHTML(self):
+        htmlString = "<div style='background-color:#"
+        count = 0
+        while count < len(self.RESOLVED_CHOICES):
+            if int(self.status) == int(self.RESOLVED_CHOICES[count][0]):
+                htmlString += str(self.RESOLVED_COLORS[count][1])
+                htmlString += "'>Event "
+                htmlString += str(self.RESOLVED_CHOICES[count][1])
+                htmlString += r"</div>"
+                return htmlString
+            count += 1
+        return 'error in resolution flag'

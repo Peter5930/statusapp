@@ -41,7 +41,7 @@ INSTALLED_APPS = (
     'django_extensions',
     'django_comments',
     'disqus',
-    'statusapp',
+    'statusapp'
 )
 
 MIDDLEWARE_CLASSES = (

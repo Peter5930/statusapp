@@ -40,7 +40,7 @@ class Event(models.Model):
         (SCHEDULED, '24A243'),
         (UNSCHEDULED, 'ffa500'),
         )
-    scheduleFlag = models.TextField(choices=SCHEDULE_FLAG_CHOICES, default=UNSCHEDULED)
+    scheduleFlag = models.IntegerField(choices=SCHEDULE_FLAG_CHOICES, default=UNSCHEDULED)
 
     def __str__(self):
         return self.description

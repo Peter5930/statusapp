@@ -21,27 +21,8 @@ def paginate(context, request, objectList, itemsPerPage):
     context['paginator'] = paginator
 
 def getStatus(context, request):
-    print "getStatus"
-    # q1 = Event.objects.filter(description__startswith='event')
-    # print "q1"
-    # for i in q1:
-    #     print i
-    # q2 = Event.objects.filter(dateStart__lte=datetime.datetime.now())#Filters out future events
-    # print "q2"
-    # for i in q2:
-    #     print i
-    # q3 = Event.objects.filter(dateEnd__gte=datetime.datetime.now())#Filters out resolved events
-    # print "q3"
-    # for i in q3:
-    #     print i
-
     #filters out future events and then filters out past events, leaving only current events, then orders them by status (desc)
     statusQuery = Event.objects.filter(dateStart__lte=datetime.datetime.now()).filter(dateEnd__gte=datetime.datetime.now()).order_by('status')
-    for i in statusQuery:
-        print i
-    print type(statusQuery)
-    print statusQuery
-    print len(statusQuery)
 
     if len(statusQuery) == 0:
         context['status'] = NORMAL_STATUS
@@ -55,12 +36,6 @@ def getStatus(context, request):
         context['statusColor'] = dict(Event.STATUS_COLORS)[statusQuery[0].status]
         context['mostCriticalEvent'] = statusQuery[0].id
         context['activeEvents'] = statusQuery
-
-    print "context['status'] = ", context['status']
-    print "context['statusText'] = ", context['statusText']
-    print "context['statusColor'] = ", context['statusColor']
-    print "context['mostCriticalEvent'] = ", context['mostCriticalEvent']
-
     return context
 
 # Create your views here.
@@ -90,8 +65,3 @@ def eventView(request, event_id):
     getStatus(context, request)
 
     return render(request, 'eventView.html', context)
-
-def current_datetime(request):
-    now = datetime.datetime.now()
-    html = "<html><body>It is now %s.</body></html>" % now
-    return HttpResponse(html)

@@ -11,7 +11,6 @@ import statusapp.views
 
 urlpatterns = [
     url(r'^$', statusapp.views.index, name='index'),
-    url(r'^db', statusapp.views.db, name='db'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^events/$', statusapp.views.events, name='events'),
     url(r'^events/(?P<event_id>[0-9]+)/$', statusapp.views.eventView, name='detail'),

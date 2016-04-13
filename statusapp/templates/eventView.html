@@ -14,6 +14,7 @@
 <li>Status associated with event:  {{ event.status }}</li>
 <li>Event id (debugging):  {{ event.id}}</li>
 <li>Next page number:   {{ pageObj.next_page_number }}</li>
+<li>pageObj.number:    {{  pageObj.number  }}</li>
 
 
 <ul class="pagination">
@@ -24,9 +25,13 @@
     {% endif %}
 
     
-    {% for i in paginator.num_pages|get_range %}
-    <li><a href="/events/{{i}}">{{i}}</a></li>
-    {% endfor %}
+        {% for i in paginator.num_pages|get_range %}
+            {% ifequal i page_obj.number %}
+                <li class="active"><a href="/events/{{i}}">{{i}}</a></li>
+            {% else %}
+                <li><a href="/events/{{i}}">{{i}}</a></li>
+            {% endifequal %}
+        {% endfor %}
 
 
     {% if pageObj.has_next %}

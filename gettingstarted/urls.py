@@ -14,4 +14,5 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^events/$', statusapp.views.events, name='events'),
     url(r'^events/(?P<event_id>[0-9]+)/$', statusapp.views.eventView, name='detail'),
+    url(r'^events/(?P<event_id>[0-9]+)/(?P<comment_id>[0-9]+)/$', statusapp.views.commentUpdate, name='commentUpdate'),
 ]

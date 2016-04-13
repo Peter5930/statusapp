@@ -1,4 +1,6 @@
 from django import template
+import json
+import datetime
 
 register = template.Library()
 
@@ -22,3 +24,8 @@ def get_range( value ):
     Instead of 3 one may use the variable set in the views
   """
   return range( 1, value + 1 )
+
+@register.filter(is_safe=True)
+def commentUpdate(event):
+    print "commentUpdate"
+    event.dateUpdated = datetime.datetime.now()

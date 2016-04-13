@@ -66,6 +66,7 @@ def getStatus(context, request):
 # Create your views here.
 def index(request):
     context = dict()
+    context['currentEvents'] = Event.objects.all()
     getStatus(context, request)
     return render(request, 'index.html', context)
 

@@ -39,7 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'django_extensions',
-    'django_comments',
+    #'django_comments',
     'disqus',
     'statusapp',
 )

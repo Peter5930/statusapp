@@ -1,6 +1,7 @@
 from django import template
 import json
 import datetime
+from statusapp.models import Event
 
 register = template.Library()
 
@@ -25,7 +26,11 @@ def get_range( value ):
   """
   return range( 1, value + 1 )
 
-@register.filter(is_safe=True)
-def commentUpdate(event):
-    print "commentUpdate"
+@register.filter()
+def updateEvent(event_id):
+    # print "updateEvent"
+    event = Event.objects.get(id=event_id)
+    # print event.dateUpdated
     event.dateUpdated = datetime.datetime.now()
+    # print event.dateUpdated
+    event.save()

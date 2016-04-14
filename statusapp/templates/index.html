@@ -17,11 +17,13 @@
 </div>
   <hr>
   <div class="alert alert-info text-center" role="alert">
+    {% if activeEvents %}
     {% for event in activeEvents %}
         <li><a href="/events/{{event.id}}" class="alert-link">{{ event.description }} | {{ event.dateStart }} | {{ event.dateEnd }} | {{ event.status }} | {{ event.id}}</a></li>
-    {% empty %}
-        <p>No events to display</p>
     {% endfor %}
+    {% else %}
+    <p>No events to display</p>
+    {% endif %}
   </div>
   
   <div class="row">

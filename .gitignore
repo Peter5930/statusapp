@@ -2,5 +2,5 @@ venv
 *.pyc
 staticfiles
 .env
-db.sqlite3
+#db.sqlite3
 statusapp/migrations

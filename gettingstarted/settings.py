@@ -93,7 +93,7 @@ DATABASES = {
         'NAME': 'db4tte32vnt17c',
         'USER': 'plbwyzhnmnkcmy',
         'PASSWORD': 'RzfX5E_IIG12U46O2XB7Odiljk',
-        'HOST': 'postgres://plbwyzhnmnkcmy:RzfX5E_IIG12U46O2XB7Odiljk@ec2-23-21-255-14.compute-1.amazonaws.com:5432/db4tte32vnt17c',
+        'HOST': 'ec2-23-21-255-14.compute-1.amazonaws.com',
         'PORT': '5432',
     }
 }

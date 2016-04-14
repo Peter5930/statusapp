@@ -21,6 +21,7 @@ def paginate(context, request, objectList, itemsPerPage):
     context['paginator'] = paginator
 
 def getStatus(context, request):
+    from models import Event
     #filters out future events and then filters out past events, leaving only current events, then orders them by status (desc)
     statusQuery = Event.objects.filter(dateStart__lte=datetime.datetime.now()).filter(dateEnd__gte=datetime.datetime.now()).order_by('status')
 

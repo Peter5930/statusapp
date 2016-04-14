@@ -52,7 +52,8 @@
     var disqus_title = '{{ site.url }}{{ page.url }}';
     var disqus_developer = 1;
     var disqus_config = function () {
-        this.callbacks.onNewComment = [function() { {{ event.id|updateEvent}}; }];
+        this.callbacks.onNewComment = [function() {
+            {{ event.id|updateEvent}}; }];
         };
 
     /* * * DON'T EDIT BELOW THIS LINE * * */
